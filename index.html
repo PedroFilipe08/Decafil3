@@ -3,130 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Itens - Decafil</title>
-    <style>
-        body {
-            display: flex;
-            font-family: Arial, sans-serif;
-            background-color: #e3f2fd; /* Azul bem claro */
-            color: #003c8f; /* Azul escuro para texto */
-            padding: 20px;
-            height: 100vh;
-            box-sizing: border-box;
-        }
-        #container {
-            display: flex;
-            width: 100%;
-            justify-content: space-between; /* Para espaçar os elementos */
-            flex-grow: 1; /* Para ocupar todo o espaço disponível */
-        }
-        #itemList {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Grade responsiva */
-            gap: 10px; /* Espaço entre os itens */
-            padding: 10px;
-            background-color: #bbdefb; /* Azul claro para o painel */
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            overflow-y: auto; /* Scroll se necessário */
-            height: calc(100vh - 150px); /* Ajusta a altura para as notificações e título */
-        }
-        #notifications {
-            position: relative;
-            width: 250px;
-            background-color: #bbdefb; /* Azul claro para notificações */
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #b2ebf2; /* Azul bebê */
-            text-align: right; /* Alinhado à direita */
-            margin: 0 0 10px 0; /* Margem abaixo do título */
-            font-size: 36px; /* Aumenta o tamanho do título */
-            width: 100%; /* Para garantir o alinhamento à direita */
-        }
-        h2 {
-            margin: 10px 0; /* Margem para o subtítulo */
-        }
-        input[type="text"],
-        input[type="number"] {
-            padding: 5px;
-            border: 1px solid #0056b3; /* Azul vibrante para bordas */
-            border-radius: 4px;
-            width: 100%; /* Preencher o espaço do item */
-            box-sizing: border-box; /* Para incluir padding e bordas no total */
-        }
-        .notification {
-            color: red;
-            margin: 5px 0;
-            font-weight: bold;
-        }
-    </style>
+    <title>Decafil</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<div id="container">
-    <div id="itemList">
-        <h2>Lista de Itens</h2>
-        <ul id="items">
-            <!-- Itens serão gerados aqui -->
+    <header>
+        <div class="logo">Decafil</div>
+        <div class="notifications">
+            <span>🔔 3 Notificações</span>
+        </div>
+    </header>
+    
+    <main>
+        <h1>Lista de Itens</h1>
+        <ul class="item-list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            <li>Item 4</li>
+            <li>Item 5</li>
         </ul>
-    </div>
-
-    <div id="notifications">
-        <h1>Decafil</h1>
-        <h2>Notificações</h2>
-        <div id="notificationArea"></div>
-    </div>
-</div>
-
-<script>
-    const items = Array.from({ length: 100 }, (_, i) => ({
-        name: `Item ${i + 1}`,
-        quantity: Math.floor(Math.random() * 10) + 1
-    }));
-
-    const itemsListElement = document.getElementById('items');
-    const notificationArea = document.getElementById('notificationArea');
-
-    function renderItems() {
-        itemsListElement.innerHTML = '';
-        items.forEach((item, index) => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
-                <input type="text" value="${item.name}" onchange="updateName(${index}, this.value)">
-                <input type="number" value="${item.quantity}" min="0" onchange="updateQuantity(${index}, this.value)">
-            `;
-            itemsListElement.appendChild(listItem);
-        });
-    }
-
-    function updateName(index, newName) {
-        items[index].name = newName;
-        checkNotifications();
-    }
-
-    function updateQuantity(index, newQuantity) {
-        items[index].quantity = parseInt(newQuantity);
-        checkNotifications();
-    }
-
-    function checkNotifications() {
-        notificationArea.innerHTML = '';
-        items.forEach(item => {
-            if (item.quantity < 3) {
-                const notification = document.createElement('div');
-                notification.className = 'notification';
-                notification.innerText = `${item.name}: ${item.quantity} unidades`;
-                notificationArea.appendChild(notification);
-            }
-        });
-    }
-
-    renderItems();
-    checkNotifications();
-</script>
-
+    </main>
+    
+    <footer>
+        <p>© 2024 Decafil. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
