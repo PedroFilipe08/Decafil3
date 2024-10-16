@@ -22,6 +22,9 @@
         }
         #item-list {
             width: 60%;
+            border: 2px solid darkorange;
+            padding: 10px;
+            border-radius: 5px;
         }
         #notifications {
             width: 30%;
@@ -30,10 +33,14 @@
             top: 100px;
             max-height: 400px;
             overflow-y: auto;
+            border: 2px solid red;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: white;
         }
         .notification {
             background-color: #ffcccb;
-            margin: 5px;
+            margin: 5px 0;
             padding: 10px;
             border: 1px solid red;
         }
@@ -41,6 +48,17 @@
             display: flex;
             justify-content: space-between;
             margin: 10px 0;
+        }
+        .item input[type="text"] {
+            width: 70%;
+        }
+        .item input[type="number"] {
+            width: 20%;
+        }
+        #notification-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
         }
     </style>
 </head>
@@ -81,13 +99,15 @@
         <div class="item"><input type="text" value="Produto 29" onchange="updateNotifications()"> <input type="number" value="0" min="0" onchange="updateNotifications()"></div>
         <div class="item"><input type="text" value="Produto 30" onchange="updateNotifications()"> <input type="number" value="4" min="0" onchange="updateNotifications()"></div>
     </div>
-    <div id="notifications"></div>
+    <div id="notifications">
+        <div id="notification-title">Notificações</div>
+    </div>
 </div>
 
 <script>
     function updateNotifications() {
         const notificationsContainer = document.getElementById('notifications');
-        notificationsContainer.innerHTML = '';
+        notificationsContainer.innerHTML = '<div id="notification-title">Notificações</div>'; // Reset notifications with title
         const items = document.querySelectorAll('.item');
 
         items.forEach(item => {
