@@ -2,7 +2,7 @@
 body {
     background-color: #e0f7fa; /* Fundo azul claro */
     color: #003f5c; /* Texto azul escuro */
-    font-family: Arial, sans-serif; /* Fonte padrão */
+    font-family: 'Arial', sans-serif; /* Fonte padrão */
     margin: 0;
     padding: 20px;
 }
@@ -44,3 +44,51 @@ h1 {
 label {
     margin-right: 10px; /* Espaçamento entre o rótulo e o input */
 }
+Instruções:
+Crie um arquivo CSS: Salve o código acima em um arquivo chamado styles.css.
+
+Link no HTML: Adicione a seguinte linha no <head> do seu HTML para vincular o CSS:
+
+html
+Copiar código
+<link rel="stylesheet" href="styles.css">
+Exemplo de HTML com o CSS:
+html
+Copiar código
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decafil</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Decafil - Controle de Estoque</h1>
+    
+    <div class="produto">
+        <div class="icone" id="icone-produto"></div>
+        <div>
+            <label for="valor">Valor do Produto: </label>
+            <input type="number" id="valor" value="100" />
+        </div>
+        <div>
+            <label for="estoque">Estoque: </label>
+            <input type="number" id="estoque" value="5" onchange="atualizaEstoque()" />
+        </div>
+    </div>
+
+    <script>
+        function atualizaEstoque() {
+            const estoque = document.getElementById('estoque').value;
+            const icone = document.getElementById('icone-produto');
+
+            if (estoque <= 3) {
+                icone.classList.add('estoque-baixo');
+            } else {
+                icone.classList.remove('estoque-baixo');
+            }
+        }
+    </script>
+</body>
+</html>
