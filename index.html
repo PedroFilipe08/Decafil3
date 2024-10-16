@@ -121,4 +121,18 @@
             const quantity = parseInt(item.querySelector('input[type="number"]').value);
             const productName = item.querySelector('input[type="text"]').value;
 
-            if (quantity <
+            if (quantity < 3) {
+                const notification = document.createElement('div');
+                notification.classList.add('notification');
+                notification.textContent = `Produto "${productName}" em falta!`;
+                notificationsContainer.appendChild(notification);
+            }
+        });
+    }
+
+    // Chama a função de atualização de notificações ao carregar a página
+    window.onload = updateNotifications;
+</script>
+
+</body>
+</html>
