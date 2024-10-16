@@ -11,10 +11,13 @@
             background-color: #e3f2fd; /* Azul bem claro */
             color: #003c8f; /* Azul escuro para texto */
             padding: 20px;
+            position: relative;
         }
         h1 {
             color: #b2ebf2; /* Azul bebê */
+            text-align: right; /* Alinhado à direita */
             margin: 0;
+            width: 100%; /* Para garantir o alinhamento à direita */
         }
         #itemList {
             width: 300px;
@@ -22,11 +25,12 @@
             background-color: #bbdefb; /* Azul claro para o painel */
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px; /* Espaço entre a lista e as notificações */
         }
         #notifications {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 60px; /* Abaixo do título */
+            right: 20px; /* No canto direito */
             width: 250px;
             background-color: #bbdefb; /* Azul claro para notificações */
             border-radius: 8px;
