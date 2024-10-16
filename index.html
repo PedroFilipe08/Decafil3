@@ -51,14 +51,15 @@
         }
         .item {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column; /* Mudado para coluna */
             margin: 5px 0; /* Diminuído para tornar a lista mais compacta */
         }
         .item input[type="text"] {
-            width: 70%;
+            width: 100%; /* Ocupa toda a largura */
         }
         .item input[type="number"] {
-            width: 20%;
+            width: 100%; /* Ocupa toda a largura */
+            margin-top: 5px; /* Espaço entre o nome e a quantidade */
         }
         #notification-title {
             font-weight: bold;
@@ -120,14 +121,4 @@
             const quantity = parseInt(item.querySelector('input[type="number"]').value);
             const productName = item.querySelector('input[type="text"]').value;
 
-            if (quantity < 3) {
-                const notification = document.createElement('div');
-                notification.classList.add('notification');
-                notification.textContent = `Produto "${productName}" em falta!`;
-                notificationsContainer.appendChild(notification);
-            }
-        });
-    }
-</script>
-
-</
+            if (quantity <
