@@ -1,113 +1,51 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Itens</title>
-    <style>
-        body {
-            display: flex;
-            font-family: Arial, sans-serif;
-            background-color: #e0f7fa; /* Azul claro de fundo */
-            color: #003c8f; /* Azul escuro para texto */
-        }
-        h1 {
-            text-align: center;
-            color: #0056b3; /* Azul vibrante */
-            margin: 20px 0;
-        }
-        #itemList {
-            width: 300px;
-            padding: 10px;
-            background-color: #b3e5fc; /* Azul mais claro para o painel */
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        #notifications {
-            margin-left: 20px;
-            padding: 10px;
-            width: 200px;
-            background-color: #bbdefb; /* Azul mais claro para notificações */
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        input[type="text"],
-        input[type="number"] {
-            margin: 5px 0;
-            padding: 5px;
-            border: 1px solid #0056b3; /* Azul vibrante para bordas */
-            border-radius: 4px;
-            width: 90%;
-        }
-        .notification {
-            color: red;
-            margin: 5px 0;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
 
-<h1>Decafil</h1> <!-- Título adicionado -->
+header {
+    background: #007bff;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
 
-<div id="itemList">
-    <h2>Lista de Itens</h2>
-    <ul id="items">
-        <!-- Itens serão gerados aqui -->
-    </ul>
-</div>
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
 
-<div id="notifications">
-    <h2>Notificações</h2>
-    <div id="notificationArea"></div>
-</div>
+.notifications {
+    font-size: 16px;
+}
 
-<script>
-    const items = Array.from({ length: 100 }, (_, i) => ({
-        name: `Item ${i + 1}`,
-        quantity: Math.floor(Math.random() * 10) + 1
-    }));
+main {
+    padding: 20px;
+}
 
-    const itemsListElement = document.getElementById('items');
-    const notificationArea = document.getElementById('notificationArea');
+.item-list {
+    list-style: none;
+    padding: 0;
+}
 
-    function renderItems() {
-        itemsListElement.innerHTML = '';
-        items.forEach((item, index) => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
-                <input type="text" value="${item.name}" onchange="updateName(${index}, this.value)">
-                <input type="number" value="${item.quantity}" min="0" onchange="updateQuantity(${index}, this.value)">
-            `;
-            itemsListElement.appendChild(listItem);
-        });
-    }
+.item-list li {
+    background: white;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-    function updateName(index, newName) {
-        items[index].name = newName;
-        checkNotifications();
-    }
-
-    function updateQuantity(index, newQuantity) {
-        items[index].quantity = parseInt(newQuantity);
-        checkNotifications();
-    }
-
-    function checkNotifications() {
-        notificationArea.innerHTML = '';
-        items.forEach(item => {
-            if (item.quantity < 3) {
-                const notification = document.createElement('div');
-                notification.className = 'notification';
-                notification.innerText = `${item.name}: ${item.quantity} unidades`;
-                notificationArea.appendChild(notification);
-            }
-        });
-    }
-
-    renderItems();
-    checkNotifications();
-</script>
-
-</body>
-</html>
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
