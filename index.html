@@ -21,10 +21,15 @@
             padding: 20px;
         }
         #item-list {
-            width: 60%;
+            width: 50%; /* Diminuído para tornar a lista mais compacta */
             border: 2px solid darkorange;
             padding: 10px;
             border-radius: 5px;
+        }
+        #item-list-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
         #notifications {
             width: 30%;
@@ -47,7 +52,7 @@
         .item {
             display: flex;
             justify-content: space-between;
-            margin: 10px 0;
+            margin: 5px 0; /* Diminuído para tornar a lista mais compacta */
         }
         .item input[type="text"] {
             width: 70%;
@@ -68,6 +73,7 @@
 
 <div id="container">
     <div id="item-list">
+        <div id="item-list-title">Lista de itens</div>
         <div class="item"><input type="text" value="Produto 1" onchange="updateNotifications()"> <input type="number" value="5" min="0" onchange="updateNotifications()"></div>
         <div class="item"><input type="text" value="Produto 2" onchange="updateNotifications()"> <input type="number" value="2" min="0" onchange="updateNotifications()"></div>
         <div class="item"><input type="text" value="Produto 3" onchange="updateNotifications()"> <input type="number" value="1" min="0" onchange="updateNotifications()"></div>
@@ -124,5 +130,4 @@
     }
 </script>
 
-</body>
-</html>
+</
