@@ -1,0 +1,46 @@
+/* Estilo do corpo da página */
+body {
+    background-color: #e0f7fa; /* Fundo azul claro */
+    color: #003f5c; /* Texto azul escuro */
+    font-family: Arial, sans-serif; /* Fonte padrão */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Estilo do título */
+h1 {
+    color: #00796b; /* Azul intenso para o título */
+    font-size: 2.5em; /* Tamanho do título */
+    text-align: center; /* Centraliza o título */
+    margin-top: 20px; /* Espaçamento acima do título */
+}
+
+/* Estilo dos produtos */
+.produto {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #00796b; /* Borda verde */
+    border-radius: 5px; /* Cantos arredondados */
+    background-color: white; /* Fundo branco para os produtos */
+}
+
+/* Estilo do ícone */
+.icone {
+    width: 50px;
+    height: 50px;
+    background-color: green; /* Cor padrão */
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+/* Estilo quando o estoque está baixo */
+.estoque-baixo {
+    background-color: red; /* Cor vermelha para estoque baixo */
+}
+
+/* Estilo dos rótulos */
+label {
+    margin-right: 10px; /* Espaçamento entre o rótulo e o input */
+}
