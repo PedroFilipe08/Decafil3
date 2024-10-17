@@ -210,30 +210,33 @@
     function login() {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        if (username === 'admin' && password === 'admin') {
+        const errorMessage = document.getElementById('error-message');
+
+        if (username === 'admin' && password === '12345') {
             document.getElementById('login-modal').style.display = 'none';
             document.getElementById('container').style.display = 'block';
+            updateNotifications();
         } else {
-            document.getElementById('error-message').innerText = 'Usuário ou senha inválidos.';
+            errorMessage.textContent = 'Nome de usuário ou senha incorretos.';
         }
-    }
-
-    function toggleConfigPanel() {
-        const panel = document.getElementById('config-panel');
-        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
     }
 
     function updateNotifications() {
         const notifications = document.getElementById('notifications');
-        notifications.innerHTML = '<div id="notification-title">Notificações</div>'; // Resetar notificações
+        notifications.innerHTML = '<div id="notification-title">Notificações</div>';
 
         for (let i = 1; i <= 30; i++) {
-            const quantity = parseInt(document.querySelector(`input[type="number"][value="${document.querySelector(`input[type="text"][value="Produto ${i}"]`).value}"]`).value);
+            const quantity = parseInt(document.querySelector(`input[type="number"]:nth-of-type(${i})`).value);
             const minQuantity = parseInt(document.getElementById(`min-quantity-produto-${i}`).value);
             if (quantity < minQuantity) {
-                notifications.innerHTML += `<div class="notification">Alerta: ${document.querySelector(`input[type="text"][value="Produto ${i}"]`).value} está abaixo da quantidade mínima!</div>`;
+                notifications.innerHTML += `<div class="notification">Atenção: ${document.querySelector(`input[type="text"]:nth-of-type(${i})`).value} está abaixo da quantidade mínima!</div>`;
             }
         }
+    }
+
+    function toggleConfigPanel() {
+        const configPanel = document.getElementById('config-panel');
+        configPanel.style.display = configPanel.style.display === 'none' || configPanel.style.display === '' ? 'block' : 'none';
     }
 </script>
 
