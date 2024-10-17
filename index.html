@@ -15,73 +15,51 @@
             font-size: 48px;
             margin: 20px 0;
         }
-        #container {
+        #login-modal {
             display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        #login-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        #container {
+            display: none; /* Escondido por padrão, mostrado após login */
             justify-content: space-between;
             padding: 20px;
         }
-        #item-list {
-            width: 50%;
-            border: 2px solid darkorange;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        #item-list-title {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        #notifications {
-            width: 30%;
-            position: fixed;
-            right: 20px;
-            top: 100px;
-            max-height: 400px;
-            overflow-y: auto;
-            border: 2px solid red;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: white;
-        }
-        .notification {
-            background-color: #ffcccb;
-            margin: 5px 0;
-            padding: 10px;
-            border: 1px solid red;
-        }
-        .item {
-            display: flex;
-            flex-direction: column;
-            margin: 5px 0;
-        }
-        .item input[type="text"] {
-            width: 100%;
-        }
-        .item input[type="number"] {
-            width: 50px;
-            margin-top: 2px;
-        }
-        #notification-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        #min-quantity-container {
-            margin-bottom: 20px;
-            text-align: center;
-        }
+        /* (Mantenha o resto do seu CSS aqui) */
     </style>
 </head>
 <body>
 
-<h1>Decafil</h1>
+<div id="login-modal">
+    <div id="login-box">
+        <h2>Login</h2>
+        <label for="username">Nome de Usuário:</label>
+        <input type="text" id="username" required>
+        <br>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" required>
+        <br>
+        <button onclick="login()">Entrar</button>
+        <div id="error-message" style="color: red; margin-top: 10px;"></div>
+    </div>
+</div>
 
 <div id="container">
+    <h1>Decafil</h1>
     <div id="item-list">
-        <div id="min-quantity-container">
-            <label for="min-quantity">Quantidade mínima para notificação:</label>
-            <input type="number" id="min-quantity" value="3" min="0" onchange="updateNotifications()">
-        </div>
         <div id="item-list-title">Lista de itens</div>
         <div class="item"><input type="text" value="Produto 1" onchange="updateNotifications()"> <input type="number" value="5" min="0" onchange="updateNotifications()"></div>
         <div class="item"><input type="text" value="Produto 2" onchange="updateNotifications()"> <input type="number" value="2" min="0" onchange="updateNotifications()"></div>
@@ -91,20 +69,66 @@
     <div id="notifications">
         <div id="notification-title">Notificações</div>
     </div>
+    <!-- Botão para abrir as configurações -->
+    <button id="config-button" onclick="toggleConfigPanel()">Configurações</button>
+    <!-- Painel de configurações -->
+    <div id="config-panel">
+        <div id="config-panel-title">Configurações de Quantidade Mínima</div>
+        <div class="config-item">
+            <label for="min-quantity-produto-1">Produto 1:</label>
+            <input type="number" id="min-quantity-produto-1" value="3" min="0" onchange="updateNotifications()">
+        </div>
+        <div class="config-item">
+            <label for="min-quantity-produto-2">Produto 2:</label>
+            <input type="number" id="min-quantity-produto-2" value="3" min="0" onchange="updateNotifications()">
+        </div>
+        <div class="config-item">
+            <label for="min-quantity-produto-3">Produto 3:</label>
+            <input type="number" id="min-quantity-produto-3" value="3" min="0" onchange="updateNotifications()">
+        </div>
+        <!-- Adicione configurações para mais produtos aqui -->
+    </div>
 </div>
 
 <script>
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('error-message');
+        
+        if (username === 'Decafil' && password === '12345') {
+            document.getElementById('login-modal').style.display = 'none';
+            document.getElementById('container').style.display = 'flex';
+            updateNotifications(); // Chama a função para inicializar as notificações
+        } else {
+            errorMessage.textContent = 'Nome de usuário ou senha incorretos!';
+        }
+    }
+
+    // Função para alternar o painel de configurações
+    function toggleConfigPanel() {
+        const configPanel = document.getElementById('config-panel');
+        if (configPanel.style.display === 'none' || configPanel.style.display === '') {
+            configPanel.style.display = 'block';
+        } else {
+            configPanel.style.display = 'none';
+        }
+    }
+
+    // Função para atualizar as notificações com base na quantidade mínima de cada produto
     function updateNotifications() {
         const notificationsContainer = document.getElementById('notifications');
         notificationsContainer.innerHTML = '<div id="notification-title">Notificações</div>';
         const items = document.querySelectorAll('.item');
-        const minQuantity = parseInt(document.getElementById('min-quantity').value); // Obtém a quantidade mínima configurável
 
-        items.forEach(item => {
+        items.forEach((item, index) => {
             const quantity = parseInt(item.querySelector('input[type="number"]').value);
             const productName = item.querySelector('input[type="text"]').value;
 
-            if (quantity < minQuantity) { // Usa a quantidade mínima configurável
+            // Pega a quantidade mínima configurável de cada produto
+            const minQuantity = parseInt(document.getElementById(`min-quantity-produto-${index + 1}`).value);
+
+            if (quantity < minQuantity) {
                 const notification = document.createElement('div');
                 notification.classList.add('notification');
                 notification.textContent = `Produto "${productName}" em falta!`;
@@ -113,7 +137,9 @@
         });
     }
 
-    window.onload = updateNotifications;
+    window.onload = function() {
+        document.getElementById('container').style.display = 'none'; // Garante que o conteúdo esteja escondido inicialmente
+    };
 </script>
 
 </body>
