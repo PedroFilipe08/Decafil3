@@ -38,7 +38,78 @@
             justify-content: space-between;
             padding: 20px;
         }
-        /* (Mantenha o resto do seu CSS aqui) */
+        #item-list {
+            width: 50%;
+            border: 2px solid red; /* Borda vermelha */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #item-list-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        #notifications {
+            width: 30%;
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 2px solid red; /* Borda vermelha */
+            padding: 10px;
+            border-radius: 5px;
+            background-color: white;
+        }
+        .notification {
+            background-color: #ffcccb;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid red;
+        }
+        .item {
+            display: flex;
+            align-items: center; /* Alinha os itens no centro */
+            margin: 5px 0;
+        }
+        .item input[type="text"] {
+            width: calc(100% - 60px); /* Ajusta a largura */
+        }
+        .item input[type="number"] {
+            width: 50px;
+            margin-left: 10px; /* Margem para separar do nome do produto */
+        }
+        #config-button {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            padding: 5px 10px; /* Botão pequeno */
+            background-color: darkblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #config-panel {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            right: 20px;
+            bottom: 70px;
+            background-color: white;
+            border: 2px solid darkblue;
+            padding: 10px;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        #config-panel-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .config-item {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -61,10 +132,37 @@
     <h1>Decafil</h1>
     <div id="item-list">
         <div id="item-list-title">Lista de itens</div>
-        <div class="item"><input type="text" value="Produto 1" onchange="updateNotifications()"> <input type="number" value="5" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 2" onchange="updateNotifications()"> <input type="number" value="2" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 3" onchange="updateNotifications()"> <input type="number" value="1" min="0" onchange="updateNotifications()"></div>
-        <!-- Adicione os itens restantes aqui -->
+        <!-- Adicionando 30 produtos -->
+        <div class="item"><input type="text" value="Produto 1" onchange="updateNotifications()"><input type="number" value="5" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 2" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 3" onchange="updateNotifications()"><input type="number" value="1" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 4" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 5" onchange="updateNotifications()"><input type="number" value="10" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 6" onchange="updateNotifications()"><input type="number" value="0" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 7" onchange="updateNotifications()"><input type="number" value="4" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 8" onchange="updateNotifications()"><input type="number" value="7" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 9" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 10" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 11" onchange="updateNotifications()"><input type="number" value="5" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 12" onchange="updateNotifications()"><input type="number" value="1" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 13" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 14" onchange="updateNotifications()"><input type="number" value="6" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 15" onchange="updateNotifications()"><input type="number" value="4" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 16" onchange="updateNotifications()"><input type="number" value="8" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 17" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 18" onchange="updateNotifications()"><input type="number" value="0" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 19" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 20" onchange="updateNotifications()"><input type="number" value="1" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 21" onchange="updateNotifications()"><input type="number" value="7" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 22" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 23" onchange="updateNotifications()"><input type="number" value="9" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 24" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 25" onchange="updateNotifications()"><input type="number" value="4" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 26" onchange="updateNotifications()"><input type="number" value="6" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 27" onchange="updateNotifications()"><input type="number" value="8" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 28" onchange="updateNotifications()"><input type="number" value="10" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 29" onchange="updateNotifications()"><input type="number" value="12" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 30" onchange="updateNotifications()"><input type="number" value="14" min="0" onchange="updateNotifications()"></div>
     </div>
     <div id="notifications">
         <div id="notification-title">Notificações</div>
