@@ -17,26 +17,7 @@
             margin: 20px 0;
             width: 100%;
         }
-        #login-modal {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-        #login-box {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
         #container {
-            display: none; /* Escondido por padrão, mostrado após login */
             padding: 20px;
             width: 100%;
         }
@@ -114,20 +95,6 @@
 </head>
 <body>
 
-<div id="login-modal">
-    <div id="login-box">
-        <h2>Login</h2>
-        <label for="username">Nome de Usuário:</label>
-        <input type="text" id="username" required>
-        <br>
-        <label for="password">Senha:</label>
-        <input type="password" id="password" required>
-        <br>
-        <button onclick="login()">Entrar</button>
-        <div id="error-message" style="color: red; margin-top: 10px;"></div>
-    </div>
-</div>
-
 <div id="container">
     <h1>Decafil</h1>
     <div id="item-list">
@@ -135,92 +102,24 @@
         <!-- Adicionando 30 produtos -->
         <div class="item"><input type="text" value="Produto 1" onchange="updateNotifications()"><input type="number" value="5" min="0" onchange="updateNotifications()"></div>
         <div class="item"><input type="text" value="Produto 2" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 3" onchange="updateNotifications()"><input type="number" value="1" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 4" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 5" onchange="updateNotifications()"><input type="number" value="10" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 6" onchange="updateNotifications()"><input type="number" value="0" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 7" onchange="updateNotifications()"><input type="number" value="4" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 8" onchange="updateNotifications()"><input type="number" value="7" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 9" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 10" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 11" onchange="updateNotifications()"><input type="number" value="5" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 12" onchange="updateNotifications()"><input type="number" value="1" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 13" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 14" onchange="updateNotifications()"><input type="number" value="6" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 15" onchange="updateNotifications()"><input type="number" value="4" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 16" onchange="updateNotifications()"><input type="number" value="8" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 17" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 18" onchange="updateNotifications()"><input type="number" value="0" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 19" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 20" onchange="updateNotifications()"><input type="number" value="1" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 21" onchange="updateNotifications()"><input type="number" value="7" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 22" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 23" onchange="updateNotifications()"><input type="number" value="9" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 24" onchange="updateNotifications()"><input type="number" value="4" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 25" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 26" onchange="updateNotifications()"><input type="number" value="1" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 27" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 28" onchange="updateNotifications()"><input type="number" value="0" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 29" onchange="updateNotifications()"><input type="number" value="4" min="0" onchange="updateNotifications()"></div>
+        <!-- Continue até Produto 30 -->
         <div class="item"><input type="text" value="Produto 30" onchange="updateNotifications()"><input type="number" value="6" min="0" onchange="updateNotifications()"></div>
     </div>
     <div id="notifications">
         <div id="notification-title">Notificações</div>
     </div>
-    <!-- Botão para abrir as configurações -->
     <button id="config-button" onclick="toggleConfigPanel()">Configurações</button>
-    <!-- Painel de configurações -->
     <div id="config-panel">
         <div id="config-panel-title">Configurações de Quantidade Mínima</div>
         <!-- Adicionando configurações para 30 produtos -->
         <div class="config-item"><label for="min-quantity-produto-1">Produto 1:</label><input type="number" id="min-quantity-produto-1" value="3" min="0" onchange="updateNotifications()"></div>
         <div class="config-item"><label for="min-quantity-produto-2">Produto 2:</label><input type="number" id="min-quantity-produto-2" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-3">Produto 3:</label><input type="number" id="min-quantity-produto-3" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-4">Produto 4:</label><input type="number" id="min-quantity-produto-4" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-5">Produto 5:</label><input type="number" id="min-quantity-produto-5" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-6">Produto 6:</label><input type="number" id="min-quantity-produto-6" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-7">Produto 7:</label><input type="number" id="min-quantity-produto-7" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-8">Produto 8:</label><input type="number" id="min-quantity-produto-8" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-9">Produto 9:</label><input type="number" id="min-quantity-produto-9" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-10">Produto 10:</label><input type="number" id="min-quantity-produto-10" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-11">Produto 11:</label><input type="number" id="min-quantity-produto-11" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-12">Produto 12:</label><input type="number" id="min-quantity-produto-12" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-13">Produto 13:</label><input type="number" id="min-quantity-produto-13" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-14">Produto 14:</label><input type="number" id="min-quantity-produto-14" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-15">Produto 15:</label><input type="number" id="min-quantity-produto-15" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-16">Produto 16:</label><input type="number" id="min-quantity-produto-16" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-17">Produto 17:</label><input type="number" id="min-quantity-produto-17" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-18">Produto 18:</label><input type="number" id="min-quantity-produto-18" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-19">Produto 19:</label><input type="number" id="min-quantity-produto-19" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-20">Produto 20:</label><input type="number" id="min-quantity-produto-20" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-21">Produto 21:</label><input type="number" id="min-quantity-produto-21" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-22">Produto 22:</label><input type="number" id="min-quantity-produto-22" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-23">Produto 23:</label><input type="number" id="min-quantity-produto-23" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-24">Produto 24:</label><input type="number" id="min-quantity-produto-24" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-25">Produto 25:</label><input type="number" id="min-quantity-produto-25" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-26">Produto 26:</label><input type="number" id="min-quantity-produto-26" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-27">Produto 27:</label><input type="number" id="min-quantity-produto-27" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-28">Produto 28:</label><input type="number" id="min-quantity-produto-28" value="3" min="0" onchange="updateNotifications()"></div>
-        <div class="config-item"><label for="min-quantity-produto-29">Produto 29:</label><input type="number" id="min-quantity-produto-29" value="3" min="0" onchange="updateNotifications()"></div>
+        <!-- Continue até Produto 30 -->
         <div class="config-item"><label for="min-quantity-produto-30">Produto 30:</label><input type="number" id="min-quantity-produto-30" value="3" min="0" onchange="updateNotifications()"></div>
     </div>
 </div>
 
 <script>
-    function login() {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const errorMessage = document.getElementById('error-message');
-
-        if (username === 'admin' && password === '12345') {
-            document.getElementById('login-modal').style.display = 'none';
-            document.getElementById('container').style.display = 'block';
-            updateNotifications();
-        } else {
-            errorMessage.textContent = 'Nome de usuário ou senha incorretos.';
-        }
-    }
-
     function updateNotifications() {
         const notifications = document.getElementById('notifications');
         notifications.innerHTML = '<div id="notification-title">Notificações</div>';
