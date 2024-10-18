@@ -70,11 +70,20 @@
             margin: 5px 0;
         }
         .item input[type="text"] {
-            width: calc(100% - 60px);
+            width: calc(100% - 100px);
         }
         .item input[type="number"] {
             width: 50px;
             margin-left: 10px;
+        }
+        .remove-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
         }
         .highlight {
             border: 2px solid red;
@@ -89,6 +98,16 @@
             margin: 20px auto;
             padding: 10px;
             background-color: darkblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #remove-item-button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: red;
             color: white;
             border: none;
             border-radius: 5px;
@@ -141,6 +160,7 @@
                 <!-- Itens serão inseridos dinamicamente aqui -->
             </div>
             <button id="add-item-button" onclick="addItem()">Adicionar Produto</button>
+            <button id="remove-item-button" onclick="activateRemoveMode()">Remover Produto</button>
         </div>
 
         <div id="notifications">
@@ -159,6 +179,7 @@
 
 <script>
     let itemCount = 0;
+    let removeModeActive = false;  // Controle se o modo de remoção está ativo
 
     // Função para adicionar um novo produto
     function addItem() {
@@ -169,7 +190,8 @@
         const newItem = document.createElement('div');
         newItem.classList.add('item');
         newItem.innerHTML = `<input type="text" value="Produto ${itemCount}" onchange="updateNotifications()">
-                             <input type="number" value="0" min="0" onchange="updateNotifications()">`;
+                             <input type="number" value="0" min="0" onchange="updateNotifications()">
+                             <button class="remove-button" onclick="removeItem(this, ${itemCount})">Remover</button>`;
         newItem.id = `produto-${itemCount}`;
         itemList.appendChild(newItem);
 
@@ -177,12 +199,39 @@
         const configContainer = document.getElementById('config-container');
         const newConfig = document.createElement('div');
         newConfig.classList.add('config-item');
+        newConfig.id = `config-produto-${itemCount}`;
         newConfig.innerHTML = `<label for="min-quantity-produto-${itemCount}">Produto ${itemCount}:</label>
                                <input type="number" id="min-quantity-produto-${itemCount}" value="3" min="0" onchange="updateNotifications()">`;
         configContainer.appendChild(newConfig);
 
         // Atualizar as notificações
         updateNotifications();
+    }
+
+    // Função para ativar o modo de remoção
+    function activateRemoveMode() {
+        removeModeActive = true;
+        alert("Modo de remoção ativado. Clique em um botão de remover para excluir um produto.");
+    }
+
+    // Função para remover um item e sua configuração correspondente
+    function removeItem(button, itemId) {
+        if (removeModeActive) {
+            const itemElement = button.parentElement;
+            const configElement = document.getElementById(`config-produto-${itemId}`);
+
+            // Remover o item da lista
+            itemElement.remove();
+
+            // Remover a configuração correspondente
+            if (configElement) {
+                configElement.remove();
+            }
+
+            // Desativar o modo de remoção após remover o produto
+            removeModeActive = false;
+            alert("Produto removido. O modo de remoção foi desativado.");
+        }
     }
 
     // Função para atualizar as notificações
