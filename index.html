@@ -9,7 +9,8 @@
             background-color: lightblue;
             font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column; /* Alinha os elementos na coluna */
+            flex-direction: column;
+            align-items: center;
         }
         h1 {
             color: darkblue;
@@ -22,8 +23,7 @@
             padding: 20px;
             width: 100%;
             display: flex;
-            flex-direction: column; /* Alinha os elementos na coluna */
-            align-items: center; /* Centraliza os itens */
+            align-items: flex-start; /* Alinha os itens no topo */
         }
         #item-list {
             width: 50%;
@@ -37,14 +37,14 @@
             margin-bottom: 10px;
         }
         #notifications {
-            width: 50%;
+            width: 30%;
             max-height: 400px;
             overflow-y: auto;
             border: 2px solid red;
             padding: 10px;
             border-radius: 5px;
             background-color: white;
-            margin-bottom: 20px; /* Espaço abaixo das notificações */
+            margin-left: 20px; /* Espaçamento à esquerda */
         }
         .notification {
             background-color: #ffcccb;
@@ -101,9 +101,6 @@
 
 <div id="container">
     <h1>Decafil</h1>
-    <div id="notifications">
-        <div id="notification-title">Notificações</div>
-    </div>
     <div id="item-list">
         <div id="item-list-title">Lista de itens</div>
         <!-- Adicionando produtos de 1 a 30 -->
@@ -138,10 +135,13 @@
         <div class="item"><input type="text" value="Produto 29" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
         <div class="item"><input type="text" value="Produto 30" onchange="updateNotifications()"><input type="number" value="6" min="0" onchange="updateNotifications()"></div>
     </div>
+    <div id="notifications">
+        <div id="notification-title">Notificações</div>
+    </div>
     <button id="config-button" onclick="toggleConfigPanel()">Configurações</button>
     <div id="config-panel">
         <div id="config-panel-title">Configurações de Quantidade Mínima</div>
-        <!-- Adicionando configurações para 30 produtos -->
+        <!-- Configurações para produtos -->
         <div class="config-item"><label for="min-quantity-produto-1">Produto 1:</label><input type="number" id="min-quantity-produto-1" value="3" min="0" onchange="updateNotifications()"></div>
         <div class="config-item"><label for="min-quantity-produto-2">Produto 2:</label><input type="number" id="min-quantity-produto-2" value="3" min="0" onchange="updateNotifications()"></div>
         <div class="config-item"><label for="min-quantity-produto-3">Produto 3:</label><input type="number" id="min-quantity-produto-3" value="3" min="0" onchange="updateNotifications()"></div>
