@@ -179,12 +179,14 @@
     function updateNotifications() {
         const notifications = document.getElementById('notifications');
         notifications.innerHTML = '<div id="notification-title">Notificações</div>';
-
+        
         for (let i = 1; i <= 30; i++) {
             const quantity = parseInt(document.querySelector(`input[type="number"]:nth-of-type(${i})`).value);
             const minQuantity = parseInt(document.getElementById(`min-quantity-produto-${i}`).value);
+            const productName = document.querySelector(`input[type="text"]:nth-of-type(${i})`).value;
+            
             if (quantity < minQuantity) {
-                notifications.innerHTML += `<div class="notification">Atenção: ${document.querySelector(`input[type="text"]:nth-of-type(${i})`).value} está em falta!</div>`;
+                notifications.innerHTML += `<div class="notification">Atenção: ${productName} está em falta!</div>`;
             }
         }
     }
