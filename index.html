@@ -19,6 +19,19 @@
             margin: 20px 0;
             width: 100%;
         }
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        #search-bar {
+            margin-right: 20px;
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid darkblue;
+        }
         #container {
             padding: 20px;
             width: 100%;
@@ -62,6 +75,14 @@
         .item input[type="number"] {
             width: 50px;
             margin-left: 10px;
+        }
+        .highlight {
+            border: 2px solid red;
+            animation: highlight 5s;
+        }
+        @keyframes highlight {
+            from { border-color: red; }
+            to { border-color: transparent; }
         }
         #add-item-button {
             display: block;
@@ -108,7 +129,10 @@
 </head>
 <body>
 
-    <h1>Decafil</h1>
+    <div id="header">
+        <input id="search-bar" type="text" placeholder="Pesquisar produto..." oninput="searchProduct()">
+        <h1>Decafil</h1>
+    </div>
     
     <div id="container">
         <div id="item-list">
@@ -146,6 +170,7 @@
         newItem.classList.add('item');
         newItem.innerHTML = `<input type="text" value="Produto ${itemCount}" onchange="updateNotifications()">
                              <input type="number" value="0" min="0" onchange="updateNotifications()">`;
+        newItem.id = `produto-${itemCount}`;
         itemList.appendChild(newItem);
 
         // Adicionar a configuração correspondente no painel de configurações
@@ -175,6 +200,22 @@
                 notifications.innerHTML += `<div class="notification">Atenção: ${productName} está em falta!</div>`;
             }
         }
+    }
+
+    // Função para pesquisar um produto e destacá-lo
+    function searchProduct() {
+        const searchValue = document.getElementById('search-bar').value.toLowerCase();
+        const items = document.querySelectorAll('#items-container .item');
+
+        items.forEach(item => {
+            const productName = item.querySelector('input[type="text"]').value.toLowerCase();
+            if (productName.includes(searchValue) && searchValue !== "") {
+                item.classList.add('highlight');  // Adiciona a classe de destaque
+                setTimeout(() => {
+                    item.classList.remove('highlight');  // Remove o destaque após 5 segundos
+                }, 5000);
+            }
+        });
     }
 
     // Função para abrir/fechar o painel de configurações
