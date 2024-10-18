@@ -9,6 +9,7 @@
             background-color: lightblue;
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column; /* Alinha os elementos na coluna */
         }
         h1 {
             color: darkblue;
@@ -20,6 +21,9 @@
         #container {
             padding: 20px;
             width: 100%;
+            display: flex;
+            flex-direction: column; /* Alinha os elementos na coluna */
+            align-items: center; /* Centraliza os itens */
         }
         #item-list {
             width: 50%;
@@ -33,14 +37,14 @@
             margin-bottom: 10px;
         }
         #notifications {
-            width: 30%;
+            width: 50%;
             max-height: 400px;
             overflow-y: auto;
             border: 2px solid red;
             padding: 10px;
             border-radius: 5px;
             background-color: white;
-            margin-left: auto;
+            margin-bottom: 20px; /* Espaço abaixo das notificações */
         }
         .notification {
             background-color: #ffcccb;
@@ -97,6 +101,9 @@
 
 <div id="container">
     <h1>Decafil</h1>
+    <div id="notifications">
+        <div id="notification-title">Notificações</div>
+    </div>
     <div id="item-list">
         <div id="item-list-title">Lista de itens</div>
         <!-- Adicionando produtos de 1 a 30 -->
@@ -128,11 +135,8 @@
         <div class="item"><input type="text" value="Produto 26" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
         <div class="item"><input type="text" value="Produto 27" onchange="updateNotifications()"><input type="number" value="0" min="0" onchange="updateNotifications()"></div>
         <div class="item"><input type="text" value="Produto 28" onchange="updateNotifications()"><input type="number" value="4" min="0" onchange="updateNotifications()"></div>
-        <div class="item"><input type="text" value="Produto 29" onchange="updateNotifications()"><input type="number" value="2" min="0" onchange="updateNotifications()"></div>
+        <div class="item"><input type="text" value="Produto 29" onchange="updateNotifications()"><input type="number" value="3" min="0" onchange="updateNotifications()"></div>
         <div class="item"><input type="text" value="Produto 30" onchange="updateNotifications()"><input type="number" value="6" min="0" onchange="updateNotifications()"></div>
-    </div>
-    <div id="notifications">
-        <div id="notification-title">Notificações</div>
     </div>
     <button id="config-button" onclick="toggleConfigPanel()">Configurações</button>
     <div id="config-panel">
@@ -180,7 +184,7 @@
             const quantity = parseInt(document.querySelector(`input[type="number"]:nth-of-type(${i})`).value);
             const minQuantity = parseInt(document.getElementById(`min-quantity-produto-${i}`).value);
             if (quantity < minQuantity) {
-                notifications.innerHTML += `<div class="notification">Atenção: ${document.querySelector(`input[type="text"]:nth-of-type(${i})`).value} está abaixo da quantidade mínima!</div>`;
+                notifications.innerHTML += `<div class="notification">Atenção: ${document.querySelector(`input[type="text"]:nth-of-type(${i})`).value} está em falta!</div>`;
             }
         }
     }
