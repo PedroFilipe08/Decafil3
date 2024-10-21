@@ -3,107 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decafil</title>
+    <title>Decafil - Gerenciamento de Estoque</title>
     <style>
         body {
-            background-color: lightblue;
-            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin: 0;
+            padding: 0;
         }
         h1 {
-            color: darkblue;
+            color: #003366;
             text-align: center;
             font-size: 48px;
-            margin: 20px 0;
-            width: 100%;
+            margin: 30px 0;
         }
         #header {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
+            background-color: #e6f2ff;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         #search-bar {
             margin-right: 20px;
-            padding: 5px;
-            font-size: 16px;
+            padding: 10px;
+            font-size: 18px;
             border-radius: 5px;
-            border: 2px solid darkblue;
+            border: 2px solid #003366;
+            width: 300px;
         }
         #container {
-            padding: 20px;
-            width: 100%;
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
         }
         #item-list {
             width: 60%;
-            border: 2px solid red;
-            padding: 10px;
-            border-radius: 5px;
+            min-width: 300px;
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         #item-list-title {
             text-align: center;
             font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 24px;
+            margin-bottom: 15px;
         }
         #notifications {
             width: 30%;
+            min-width: 250px;
             max-height: 400px;
             overflow-y: auto;
-            border: 2px solid red;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: white;
+            border: 2px solid #ccc;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #fffafa;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .notification {
-            background-color: #ffcccb;
-            margin: 5px 0;
+            background-color: #ffefef;
+            margin: 10px 0;
             padding: 10px;
-            border: 1px solid red;
+            border: 1px solid #ff6666;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .item {
             display: flex;
             align-items: center;
-            margin: 5px 0;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .item input[type="text"], .item input[type="number"] {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
         }
         .item input[type="text"] {
-            width: calc(100% - 60px);
+            flex: 1;
+            margin-right: 10px;
         }
         .item input[type="number"] {
-            width: 50px;
-            margin-left: 10px;
+            width: 60px;
         }
-        .highlight {
-            border: 2px solid red;
-            animation: highlight 5s;
-        }
-        @keyframes highlight {
-            from { border-color: red; }
-            to { border-color: transparent; }
-        }
-        #add-item-button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px;
-            background-color: darkblue;
+        #add-item-button, #config-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #003366;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #add-item-button:hover, #config-button:hover {
+            background-color: #002244;
         }
         #config-button {
             position: fixed;
             right: 20px;
             bottom: 20px;
-            padding: 5px 10px;
-            background-color: darkblue;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
         #config-panel {
             display: none;
@@ -111,19 +125,24 @@
             right: 20px;
             bottom: 70px;
             background-color: white;
-            border: 2px solid darkblue;
-            padding: 10px;
-            border-radius: 5px;
+            border: 2px solid #003366;
+            padding: 20px;
+            border-radius: 10px;
             max-height: 300px;
             overflow-y: auto;
         }
         #config-panel-title {
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             text-align: center;
         }
         .config-item {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        @media (max-width: 768px) {
+            #item-list, #notifications {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -131,12 +150,12 @@
 
     <div id="header">
         <input id="search-bar" type="text" placeholder="Pesquisar produto..." oninput="searchProduct()">
-        <h1>Decafil</h1>
+        <h1>Decafil - Gerenciamento de Estoque</h1>
     </div>
     
     <div id="container">
         <div id="item-list">
-            <div id="item-list-title">Lista de itens</div>
+            <div id="item-list-title">Lista de Itens</div>
             <div id="items-container">
                 <!-- Itens serão inseridos dinamicamente aqui -->
             </div>
@@ -164,7 +183,6 @@
     function addItem() {
         itemCount++;
         
-        // Adicionar o item à lista de produtos
         const itemList = document.getElementById('items-container');
         const newItem = document.createElement('div');
         newItem.classList.add('item');
@@ -173,7 +191,7 @@
         newItem.id = `produto-${itemCount}`;
         itemList.appendChild(newItem);
 
-        // Adicionar a configuração correspondente no painel de configurações
+        // Adicionar configuração de quantidade mínima
         const configContainer = document.getElementById('config-container');
         const newConfig = document.createElement('div');
         newConfig.classList.add('config-item');
@@ -181,20 +199,19 @@
                                <input type="number" id="min-quantity-produto-${itemCount}" value="3" min="0" onchange="updateNotifications()">`;
         configContainer.appendChild(newConfig);
 
-        // Atualizar as notificações
         updateNotifications();
     }
 
-    // Função para atualizar as notificações
+    // Função para atualizar notificações
     function updateNotifications() {
         const notifications = document.getElementById('notifications');
         notifications.innerHTML = '<div id="notification-title">Notificações</div>';
         
         const items = document.querySelectorAll('#items-container .item');
         for (let i = 0; i < items.length; i++) {
-            const productName = items[i].querySelector('input[type="text"]').value;  // Nome do produto
-            const quantity = parseInt(items[i].querySelector('input[type="number"]').value);  // Quantidade atual
-            const minQuantity = parseInt(document.getElementById(`min-quantity-produto-${i + 1}`).value);  // Quantidade mínima
+            const productName = items[i].querySelector('input[type="text"]').value;
+            const quantity = parseInt(items[i].querySelector('input[type="number"]').value);
+            const minQuantity = parseInt(document.getElementById(`min-quantity-produto-${i + 1}`).value);
 
             if (quantity < minQuantity) {
                 notifications.innerHTML += `<div class="notification">Atenção: ${productName} está em falta!</div>`;
@@ -202,7 +219,7 @@
         }
     }
 
-    // Função para pesquisar um produto e destacá-lo
+    // Função de busca de produtos
     function searchProduct() {
         const searchValue = document.getElementById('search-bar').value.toLowerCase();
         const items = document.querySelectorAll('#items-container .item');
@@ -210,21 +227,21 @@
         items.forEach(item => {
             const productName = item.querySelector('input[type="text"]').value.toLowerCase();
             if (productName.includes(searchValue) && searchValue !== "") {
-                item.classList.add('highlight');  // Adiciona a classe de destaque
+                item.classList.add('highlight');
                 setTimeout(() => {
-                    item.classList.remove('highlight');  // Remove o destaque após 5 segundos
+                    item.classList.remove('highlight');
                 }, 5000);
             }
         });
     }
 
-    // Função para abrir/fechar o painel de configurações
+    // Abrir/fechar painel de configurações
     function toggleConfigPanel() {
         const configPanel = document.getElementById('config-panel');
         configPanel.style.display = configPanel.style.display === 'none' || configPanel.style.display === '' ? 'block' : 'none';
     }
 
-    // Adicionar alguns produtos iniciais
+    // Adicionar produtos iniciais
     for (let i = 0; i < 5; i++) {
         addItem();
     }
