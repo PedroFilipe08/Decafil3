@@ -5,152 +5,209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Decafil - Gerenciamento de Estoque</title>
     <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            background-color: #f0f8ff;
+            background-color: #f5f7fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0;
-            padding: 0;
         }
+
+        /* Estilo moderno para o título */
         h1 {
-            color: #003366;
+            color: #2c3e50;
             text-align: center;
             font-size: 48px;
             margin: 30px 0;
+            letter-spacing: 2px;
         }
+
+        /* Header com sombras e espaçamento elegante */
         #header {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            background-color: #e6f2ff;
-            padding: 20px 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #2980b9;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+
+        /* Barra de pesquisa */
         #search-bar {
             margin-right: 20px;
-            padding: 10px;
+            padding: 12px;
             font-size: 18px;
-            border-radius: 5px;
-            border: 2px solid #003366;
+            border-radius: 30px;
+            border: 1px solid #ccc;
             width: 300px;
+            transition: all 0.3s ease;
         }
+        #search-bar:focus {
+            border: 1px solid #2980b9;
+            outline: none;
+        }
+
+        /* Container principal */
         #container {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
             width: 100%;
             max-width: 1200px;
-            padding: 20px;
+            padding: 30px;
         }
+
+        /* Lista de itens com bordas arredondadas e sombras suaves */
         #item-list {
             width: 60%;
             min-width: 300px;
-            border: 2px solid #ccc;
+            border: 1px solid #ddd;
             padding: 20px;
-            border-radius: 10px;
-            background-color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+
+        /* Título dos itens */
         #item-list-title {
             text-align: center;
             font-weight: bold;
             font-size: 24px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            color: #2c3e50;
         }
+
+        /* Estilo das notificações */
         #notifications {
             width: 30%;
             min-width: 250px;
             max-height: 400px;
             overflow-y: auto;
-            border: 2px solid #ccc;
-            padding: 15px;
-            border-radius: 10px;
-            background-color: #fffafa;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .notification {
-            background-color: #ffefef;
+            background-color: #f9ebeb;
             margin: 10px 0;
             padding: 10px;
-            border: 1px solid #ff6666;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e74c3c;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
+
+        /* Estilo dos itens */
         .item {
             display: flex;
             align-items: center;
-            margin: 10px 0;
-            padding: 10px;
+            justify-content: space-between;
+            margin: 15px 0;
+            padding: 15px;
             background-color: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
         .item input[type="text"], .item input[type="number"] {
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             padding: 10px;
             border-radius: 5px;
-        }
-        .item input[type="text"] {
-            flex: 1;
-            margin-right: 10px;
+            width: 80%;
         }
         .item input[type="number"] {
             width: 60px;
-        }
-        #add-item-button, #remove-item-button, #config-button, #remove-ok-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #003366;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        #add-item-button:hover, #remove-item-button:hover, #config-button:hover, #remove-ok-button:hover {
-            background-color: #002244;
-        }
-        #config-button {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-        }
-        #remove-item-input {
-            display: none;
-            margin-top: 10px;
-            padding: 10px;
-            border: 2px solid #003366;
-            border-radius: 5px;
-            width: 200px;
-        }
-        #remove-ok-button {
-            display: none;
             margin-left: 10px;
         }
+
+        /* Estilo dos botões */
+        button {
+            background-color: #2980b9;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #21618c;
+            transform: scale(1.05);
+        }
+
+        /* Estilo dos botões para remover produto */
+        #remove-item-input, #remove-ok-button {
+            display: none;
+            margin-top: 10px;
+        }
+
+        /* Painel de configurações */
         #config-panel {
             display: none;
             position: fixed;
             right: 20px;
             bottom: 70px;
             background-color: white;
-            border: 2px solid #003366;
+            border: 2px solid #2980b9;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             max-height: 300px;
             overflow-y: auto;
         }
         #config-panel-title {
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
         }
-        .config-item {
-            margin-bottom: 15px;
+
+        /* Página de login estilizada */
+        #login-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f7fa;
         }
+        #login-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+        #login-box input[type="text"], #login-box input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        #login-box input[type="text"]:focus, #login-box input[type="password"]:focus {
+            border-color: #2980b9;
+            outline: none;
+        }
+        #login-box button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+        #error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
         @media (max-width: 768px) {
             #item-list, #notifications {
                 width: 100%;
