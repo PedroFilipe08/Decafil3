@@ -10,4 +10,139 @@
         padding: 0;
     }
     h1 {
-        color: #003
+        color: #003366;
+        text-align: center;
+        font-size: 48px;
+        margin: 30px 0;
+    }
+    #header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background-color: #e6f2ff;
+        padding: 20px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    #search-bar {
+        margin-right: 20px;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: 2px solid #003366;
+        width: 300px;
+    }
+    #container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 1200px;
+        padding: 20px;
+    }
+    #item-list {
+        width: 60%;
+        min-width: 300px;
+        border: 2px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    #notifications {
+        width: 30%;
+        min-width: 250px;
+        max-height: 400px;
+        overflow-y: auto;
+        border: 2px solid #ccc;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #fffafa;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .notification {
+        background-color: #ffefef;
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ff6666;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .item {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .item input[type="text"], .item input[type="number"] {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .item input[type="text"] {
+        flex: 1;
+        margin-right: 10px;
+    }
+    .item input[type="number"] {
+        width: 60px;
+    }
+    #add-item-button, #remove-item-button, #config-button, #remove-ok-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #003366;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    #add-item-button:hover, #remove-item-button:hover, #config-button:hover, #remove-ok-button:hover {
+        background-color: #002244;
+    }
+    #config-button {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+    }
+    #remove-item-input {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        border: 2px solid #003366;
+        border-radius: 5px;
+        width: 200px;
+    }
+    #remove-ok-button {
+        display: none;
+        margin-left: 10px;
+    }
+    #config-panel {
+        display: none;
+        position: fixed;
+        right: 20px;
+        bottom: 70px;
+        background-color: white;
+        border: 2px solid #003366;
+        padding: 20px;
+        border-radius: 10px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    #config-panel-title {
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .config-item {
+        margin-bottom: 15px;
+    }
+    @media (max-width: 768px) {
+        #item-list, #notifications {
+            width: 100%;
+        }
+    }
+</style>
