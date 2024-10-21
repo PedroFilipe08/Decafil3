@@ -219,10 +219,11 @@
         }
     }
 
-    // Função de busca de produtos
+    // Função de busca de produtos e reordenamento
     function searchProduct() {
         const searchValue = document.getElementById('search-bar').value.toLowerCase();
         const items = document.querySelectorAll('#items-container .item');
+        let foundItem = null;
 
         items.forEach(item => {
             const productName = item.querySelector('input[type="text"]').value.toLowerCase();
@@ -231,8 +232,17 @@
                 setTimeout(() => {
                     item.classList.remove('highlight');
                 }, 5000);
+
+                // Reordenar: mover o item para o topo da lista
+                foundItem = item;
             }
         });
+
+        // Se o item foi encontrado, movê-lo para o topo da lista
+        if (foundItem) {
+            const itemList = document.getElementById('items-container');
+            itemList.prepend(foundItem);
+        }
     }
 
     // Abrir/fechar painel de configurações
