@@ -2,36 +2,48 @@
 body {
     background-color: #f0f8ff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0;
-    padding: 0;
+    min-height: 100vh;
 }
+
+/* Títulos */
 h1 {
     color: #003366;
-    text-align: center;
     font-size: 48px;
     margin: 30px 0;
+    text-align: center;
 }
+
+/* Cabeçalho */
 #header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     background-color: #e6f2ff;
-    padding: 20px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Barra de pesquisa */
 #search-bar {
-    margin-right: 20px;
     padding: 10px;
     font-size: 18px;
-    border-radius: 5px;
-    border: 2px solid #003366;
     width: 300px;
+    border: 2px solid #00509e;
+    border-radius: 5px;
+    transition: box-shadow 0.2s;
 }
-/* Estilos para a lista de itens, notificações, e painel de configurações... */
+#search-bar:focus {
+    outline: none;
+    box-shadow: 0 0 8px #00509e;
+}
+
+/* Container principal */
 #container {
     display: flex;
     justify-content: space-around;
@@ -39,25 +51,57 @@ h1 {
     width: 100%;
     max-width: 1200px;
     padding: 20px;
+    gap: 20px;
 }
+
+/* Lista de Itens */
 #item-list {
-    width: 60%;
+    flex: 1;
     min-width: 300px;
-    border: 2px solid #ccc;
-    padding: 20px;
-    border-radius: 10px;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Notificações */
 #notifications {
-    width: 30%;
+    flex: 0.5;
     min-width: 250px;
     max-height: 400px;
     overflow-y: auto;
-    border: 2px solid #ccc;
-    padding: 15px;
-    border-radius: 10px;
     background-color: #fffafa;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-/* Mais estilos podem ser adicionados aqui para outras partes da interface */
+
+/* Botões */
+button {
+    background-color: #00509e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+button:hover {
+    background-color: #003366;
+}
+button:active {
+    transform: scale(0.98);
+}
+
+/* Painel de Configurações */
+#config-panel {
+    margin-top: 20px;
+    background-color: #f0f8ff;
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
