@@ -21,144 +21,27 @@
             font-size: 48px;
             margin: 30px 0;
         }
-        #header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            background-color: #e6f2ff;
-            padding: 20px 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        #search-bar {
-            margin-right: 20px;
-            padding: 10px;
-            font-size: 18px;
-            border-radius: 5px;
-            border: 2px solid #003366;
-            width: 300px;
-        }
-        #container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+        #site-content {
+            display: none;
             width: 100%;
             max-width: 1200px;
             padding: 20px;
         }
-        #item-list {
-            width: 60%;
-            min-width: 300px;
-            border: 2px solid #ccc;
-            padding: 20px;
+        #notifications, #item-list {
+            margin: 10px;
+            border: 1px solid #ccc;
             border-radius: 10px;
-            background-color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        #item-list-title {
-            text-align: center;
-            font-weight: bold;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        #notifications {
-            width: 30%;
-            min-width: 250px;
-            max-height: 400px;
-            overflow-y: auto;
-            border: 2px solid #ccc;
+            background: white;
             padding: 15px;
-            border-radius: 10px;
-            background-color: #fffafa;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .notification {
-            background-color: #ffefef;
-            margin: 10px 0;
-            padding: 10px;
+            background: #ffefef;
             border: 1px solid #ff6666;
             border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .item {
-            display: flex;
-            align-items: center;
             margin: 10px 0;
             padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .item input[type="text"], .item input[type="number"] {
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .item input[type="text"] {
-            flex: 1;
-            margin-right: 10px;
-        }
-        .item input[type="number"] {
-            width: 60px;
-        }
-        #add-item-button, #remove-item-button, #config-button, #remove-ok-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #003366;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        #add-item-button:hover, #remove-item-button:hover, #config-button:hover, #remove-ok-button:hover {
-            background-color: #002244;
-        }
-        #config-button {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-        }
-        #remove-item-input {
-            display: none;
-            margin-top: 10px;
-            padding: 10px;
-            border: 2px solid #003366;
-            border-radius: 5px;
-            width: 200px;
-        }
-        #remove-ok-button {
-            display: none;
-            margin-left: 10px;
-        }
-        #config-panel {
-            display: none;
-            position: fixed;
-            right: 20px;
-            bottom: 70px;
-            background-color: white;
-            border: 2px solid #003366;
-            padding: 20px;
-            border-radius: 10px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        #config-panel-title {
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .config-item {
-            margin-bottom: 15px;
-        }
-        @media (max-width: 768px) {
-            #item-list, #notifications {
-                width: 100%;
-            }
-        }
-
-        /* Estilo da página de login */
         #login-page {
             display: flex;
             justify-content: center;
@@ -166,7 +49,6 @@
             height: 100vh;
             background-color: #f0f8ff;
         }
-
         #login-box {
             background-color: white;
             border: 2px solid #003366;
@@ -175,12 +57,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-
-        #login-box h1 {
-            color: #003366;
-            margin-bottom: 20px;
-        }
-
         #login-box input[type="text"], #login-box input[type="password"] {
             width: 100%;
             padding: 10px;
@@ -189,7 +65,6 @@
             border-radius: 5px;
             font-size: 16px;
         }
-
         #login-box button {
             width: 100%;
             padding: 10px;
@@ -201,15 +76,23 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
         #login-box button:hover {
             background-color: #002244;
         }
-
         #error-message {
             color: red;
             margin-top: 10px;
             font-size: 14px;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -227,189 +110,109 @@
 </div>
 
 <!-- Conteúdo do Site -->
-<div id="site-content" style="display:none;">
-    <div id="header">
-        <input id="search-bar" type="text" placeholder="Pesquisar produto..." oninput="searchProduct()">
-        <h1>Decafil - Gerenciamento de Estoque</h1>
+<div id="site-content">
+    <h1>Decafil - Gerenciamento de Estoque</h1>
+    <input type="text" id="search-bar" placeholder="Pesquisar produto..." oninput="searchProduct()">
+    
+    <div id="item-list">
+        <h2>Lista de Itens</h2>
+        <div id="items-container"></div>
+        <button onclick="addItem()">Adicionar Produto</button>
+        <input type="text" id="remove-item-input" placeholder="Nome do produto...">
+        <button onclick="removeItem()">Remover Produto</button>
     </div>
     
-    <div id="container">
-        <div id="item-list">
-            <div id="item-list-title">Lista de Itens</div>
-            <div id="items-container">
-                <!-- Itens serão inseridos dinamicamente aqui -->
-            </div>
-            <button id="add-item-button" onclick="addItem()">Adicionar Produto</button>
-            <button id="remove-item-button" onclick="showRemoveInput()">Remover Produto</button>
-            <input type="text" id="remove-item-input" placeholder="Nome do produto...">
-            <button id="remove-ok-button" onclick="removeItem()">OK</button>
-        </div>
-
-        <div id="notifications">
-            <div id="notification-title">Notificações</div>
-        </div>
-    </div>
-
-    <button id="config-button" onclick="toggleConfigPanel()">Configurações</button>
-    
-    <div id="config-panel">
-        <div id="config-panel-title">Configurações de Quantidade Mínima</div>
-        <div id="config-container">
-            <!-- Configurações serão inseridas dinamicamente aqui -->
-        </div>
+    <div id="notifications">
+        <h2>Notificações</h2>
+        <div id="notification-container"></div>
     </div>
 </div>
 
 <script>
-    // Função de login
     function login() {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
         const errorMessage = document.getElementById('error-message');
 
         if (username === 'Decafil5' && password === '#Decafil2024@') {
-            document.getElementById('login-page').style.display = 'none'; // Esconder página de login
-            document.getElementById('site-content').style.display = 'block'; // Mostrar conteúdo do site
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('site-content').style.display = 'block';
         } else {
             errorMessage.textContent = 'Nome de usuário ou senha incorretos!';
         }
     }
 
     let itemCount = 0;
+    const items = [];
 
-    // Função para adicionar um novo produto
     function addItem() {
         itemCount++;
-        
-        const itemList = document.getElementById('items-container');
+        const itemName = `Produto ${itemCount}`;
+        const itemContainer = document.getElementById('items-container');
         const newItem = document.createElement('div');
         newItem.classList.add('item');
-        newItem.innerHTML = `<input type="text" value="Produto ${itemCount}" onchange="updateItemName(${itemCount}, this.value)">
-                             <input type="number" value="0" min="0" onchange="updateNotifications()">`;
-        newItem.id = `produto-${itemCount}`;
-        itemList.appendChild(newItem);
-
-        // Adicionar configuração de quantidade mínima
-        const configContainer = document.getElementById('config-container');
-        const newConfig = document.createElement('div');
-        newConfig.classList.add('config-item');
-        newConfig.innerHTML = `<label id="label-produto-${itemCount}" for="min-quantity-produto-${itemCount}">Produto ${itemCount}:</label>
-                               <input type="number" id="min-quantity-produto-${itemCount}" value="3" min="0" onchange="updateNotifications()">`;
-        configContainer.appendChild(newConfig);
-
+        newItem.innerHTML = `<input type="text" value="${itemName}" data-id="${itemCount}" onchange="updateItemName(${itemCount}, this.value)">
+                             <input type="number" value="0" min="0" data-id="${itemCount}" onchange="updateQuantity(${itemCount}, this.value)">`;
+        newItem.id = `item-${itemCount}`;
+        itemContainer.appendChild(newItem);
+        items.push({ id: itemCount, name: itemName, quantity: 0, minQuantity: 3 });
         updateNotifications();
     }
 
-    // Função para atualizar o nome do item nas configurações e notificações
-    function updateItemName(itemId, newName) {
-        // Atualizar o nome na configuração de quantidade mínima
-        const configLabel = document.getElementById(`label-produto-${itemId}`);
-        configLabel.innerText = `${newName}:`;
-
-        // Atualizar as notificações
-        updateNotifications();
+    function updateItemName(id, newName) {
+        const item = items.find(i => i.id === id);
+        if (item) {
+            item.name = newName.trim();
+            updateNotifications();
+        }
     }
 
-    // Função para mostrar caixa de remover produto
-    function showRemoveInput() {
-        document.getElementById('remove-item-input').style.display = 'inline-block';
-        document.getElementById('remove-ok-button').style.display = 'inline-block';
+    function updateQuantity(id, newQuantity) {
+        const item = items.find(i => i.id === id);
+        if (item) {
+            item.quantity = parseInt(newQuantity);
+            updateNotifications();
+        }
     }
 
-    // Função para remover o produto da lista e das configurações
     function removeItem() {
-        const productName = document.getElementById('remove-item-input').value.toLowerCase();
-        const items = document.querySelectorAll('#items-container .item');
-        const configItems = document.querySelectorAll('#config-container .config-item');
-        let found = false;
-
-        // Remover da lista de itens
-        items.forEach(item => {
-            const currentProductName = item.querySelector('input[type="text"]').value.toLowerCase();
-            if (currentProductName === productName) {
-                item.remove();  // Remove o item da lista
-                found = true;
-            }
-        });
-
-        // Remover da configuração de quantidade mínima
-        configItems.forEach(configItem => {
-            const label = configItem.querySelector('label').innerText.toLowerCase();
-            if (label.includes(productName)) {
-                configItem.remove();  // Remove a configuração correspondente
-            }
-        });
-
-        if (found) {
-            // Esconder caixa de texto e botão OK
-            document.getElementById('remove-item-input').style.display = 'none';
-            document.getElementById('remove-ok-button').style.display = 'none';
-            document.getElementById('remove-item-input').value = '';  // Limpa o campo de texto
+        const productName = document.getElementById('remove-item-input').value.trim().toLowerCase();
+        const itemIndex = items.findIndex(item => item.name.toLowerCase() === productName);
+        
+        if (itemIndex !== -1) {
+            const itemId = items[itemIndex].id;
+            document.getElementById(`item-${itemId}`).remove();  // Remove o item da lista
+            items.splice(itemIndex, 1);  // Remove o item do array de itens
+            updateNotifications();  // Atualiza as notificações
         } else {
             alert('Produto não encontrado!');
         }
-
-        updateNotifications();  // Atualiza as notificações após a remoção do item
     }
 
-    // Função para atualizar notificações
     function updateNotifications() {
-        const notifications = document.getElementById('notifications');
-        notifications.innerHTML = '<div id="notification-title">Notificações</div>';
-        
-        const items = document.querySelectorAll('#items-container .item');
-        for (let i = 0; i < items.length; i++) {
-            const productName = items[i].querySelector('input[type="text"]').value;
-            const quantity = parseInt(items[i].querySelector('input[type="number"]').value);
-            const minQuantity = document.getElementById(`min-quantity-produto-${i + 1}`);
+        const notificationContainer = document.getElementById('notification-container');
+        notificationContainer.innerHTML = '';  // Limpa as notificações
 
-            // Verifica se a configuração de quantidade mínima existe
-            if (minQuantity) {
-                const minQuantityValue = parseInt(minQuantity.value);
-                if (quantity < minQuantityValue) {
-                    notifications.innerHTML += `<div class="notification" data-product="${productName.toLowerCase()}">Atenção: ${productName} está em falta!</div>`;
-                }
-            }
-        }
-    }
-
-    // Função de busca de produtos e reposicionamento do item
-    function searchProduct() {
-        const searchValue = document.getElementById('search-bar').value.toLowerCase();
-        const items = document.querySelectorAll('#items-container .item');
-        let foundItem = null;
-
-        // Verifica se o item foi encontrado na pesquisa
         items.forEach(item => {
-            const productName = item.querySelector('input[type="text"]').value.toLowerCase();
-            if (productName.includes(searchValue) && searchValue !== "") {
-                item.classList.add('highlight');
-                setTimeout(() => {
-                    item.classList.remove('highlight');
-                }, 5000);
-
-                // Encontrar o item pesquisado
-                foundItem = item;
+            if (item.quantity < item.minQuantity) {
+                const notification = document.createElement('div');
+                notification.classList.add('notification');
+                notification.innerText = `Atenção: ${item.name} está em falta!`;
+                notification.dataset.productId = item.id;
+                notificationContainer.appendChild(notification);
             }
         });
-
-        // Se o item foi encontrado, move ele para o topo da lista sem alterar a ordem dos outros
-        if (foundItem) {
-            const itemList = document.getElementById('items-container');
-            itemList.removeChild(foundItem);  // Remove o item da posição original
-            itemList.insertBefore(foundItem, itemList.firstChild);  // Coloca no topo
-        }
     }
 
-    // Abrir/fechar painel de configurações
-    function toggleConfigPanel() {
-        const configPanel = document.getElementById('config-panel');
-        configPanel.style.display = configPanel.style.display === 'none' || configPanel.style.display === '' ? 'block' : 'none';
-    }
+    function searchProduct() {
+        const searchValue = document.getElementById('search-bar').value.trim().toLowerCase();
+        const itemsContainer = document.getElementById('items-container');
+        const itemsDivs = itemsContainer.getElementsByClassName('item');
 
-    // Adicionar produtos iniciais
-    for (let i = 0; i < 5; i++) {
-        addItem();
+        Array.from(itemsDivs).forEach(itemDiv => {
+            const itemName = itemDiv.querySelector('input[type="text"]').value.toLowerCase();
+            itemDiv.style.display = itemName.includes(searchValue) ? '' : 'none';
+        });
     }
 </script>
 
