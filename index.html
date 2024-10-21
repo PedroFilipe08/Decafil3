@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decafil - Gerenciamento de Estoque</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Página de Login -->
+    <div id="login-page">
+        <div id="login-box">
+            <h1>Login</h1>
+            <input type="text" id="username" placeholder="Usuário">
+            <input type="password" id="password" placeholder="Senha">
+            <button onclick="login()">Entrar</button>
+            <div id="error-message"></div>
+        </div>
+    </div>
+
+    <!-- Conteúdo do Site -->
+    <div id="site-content" style="display:none;">
+        <div id="header">
+            <input id="search-bar" type="text" placeholder="Pesquisar produto..." oninput="searchProduct()">
+            <h1>Decafil - Gerenciamento de Estoque</h1>
+        </div>
+        
+        <div id="container">
+            <div id="item-list">
+                <div id="item-list-title">Lista de Itens</div>
+                <div id="items-container">
+                    <!-- Itens serão inseridos dinamicamente aqui -->
+                </div>
+                <button id="add-item-button" onclick="addItem()">Adicionar Produto</button>
+                <button id="remove-item-button" onclick="showRemoveInput()">Remover Produto</button>
+                <input type="text" id="remove-item-input" placeholder="Nome do produto...">
+                <button id="remove-ok-button" onclick="removeItem()">OK</button>
+            </div>
+
+            <div id="notifications">
+                <div id="notification-title">Notificações</div>
+            </div>
+        </div>
+
+        <button id="config-button" onclick="toggleConfigPanel()">Configurações</button>
+        
+        <div id="config-panel">
+            <div id="config-panel-title">Configurações de Quantidade Mínima</div>
+            <div id="config-container">
+                <!-- Configurações serão inseridas dinamicamente aqui -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Importando arquivos JavaScript -->
+    <script src="js/login.js"></script>
+    <script src="js/items.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/addItem.js"></script>
+    <script src="js/removeItem.js"></script>
+</body>
+</html>
