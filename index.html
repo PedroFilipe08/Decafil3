@@ -219,12 +219,13 @@
         }
     }
 
-    // Função de busca de produtos e reordenamento
+    // Função de busca de produtos e reposicionamento do item
     function searchProduct() {
         const searchValue = document.getElementById('search-bar').value.toLowerCase();
         const items = document.querySelectorAll('#items-container .item');
         let foundItem = null;
 
+        // Verifica se o item foi encontrado na pesquisa
         items.forEach(item => {
             const productName = item.querySelector('input[type="text"]').value.toLowerCase();
             if (productName.includes(searchValue) && searchValue !== "") {
@@ -233,15 +234,16 @@
                     item.classList.remove('highlight');
                 }, 5000);
 
-                // Reordenar: mover o item para o topo da lista
+                // Encontrar o item pesquisado
                 foundItem = item;
             }
         });
 
-        // Se o item foi encontrado, movê-lo para o topo da lista
+        // Se o item foi encontrado, move ele para o topo da lista sem alterar a ordem dos outros
         if (foundItem) {
             const itemList = document.getElementById('items-container');
-            itemList.prepend(foundItem);
+            itemList.removeChild(foundItem);  // Remove o item da posição original
+            itemList.insertBefore(foundItem, itemList.firstChild);  // Coloca no topo
         }
     }
 
